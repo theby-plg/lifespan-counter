@@ -21,6 +21,60 @@ class _TebakUmurPageState extends State<TebakUmurPage> {
     _finalResult = tempResult;
   }
 
+  Widget _buildNumberButton(int number) {
+    bool isSelected = _userNumber == number;
+    Color buttonColor = isSelected ? Colors.green : Colors.deepOrange;
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _userNumber = number;
+        });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: buttonColor,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        padding: EdgeInsets.all(10),
+        child: Text(
+          number.toString(),
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildChoiceButton(String choice) {
+    bool isSelected = _tahunUlangTahun == choice;
+    Color buttonColor = isSelected ? Colors.blue : Colors.blueGrey;
+
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          _tahunUlangTahun = choice;
+        });
+      },
+      child: Container(
+        decoration: BoxDecoration(
+          color: buttonColor,
+          borderRadius: BorderRadius.circular(5),
+        ),
+        padding: EdgeInsets.all(10),
+        child: Text(
+          choice,
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 16,
+          ),
+        ),
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,35 +84,21 @@ class _TebakUmurPageState extends State<TebakUmurPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('Pilih Angka Yang Kamu Inginkan:'),
-            DropdownButton<int>(
-              value: _userNumber,
-              onChanged: (newValue) {
-                setState(() {
-                  _userNumber = newValue!;
-                });
-              },
-              items: List.generate(9, (index) {
-                return DropdownMenuItem<int>(
-                  value: index + 1,
-                  child: Text((index + 1).toString()),
-                );
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: List.generate(9, (index) {
+                return _buildNumberButton(index + 1);
               }),
             ),
             SizedBox(height: 20),
-            Text('Di tahun 2023 ini , apa Kamu sudah ulang tahun?'),
-            DropdownButton<String>(
-              value: _tahunUlangTahun,
-              onChanged: (newValue) {
-                setState(() {
-                  _tahunUlangTahun = newValue!;
-                });
-              },
-              items: ["Belum", "Sudah"].map<DropdownMenuItem<String>>((value) {
-                return DropdownMenuItem<String>(
-                  value: value,
-                  child: Text(value),
-                );
-              }).toList(),
+            Text('Di tahun 2023 ini, apakah kamu sudah ulang tahun?'),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                _buildChoiceButton("Sudah"),
+                SizedBox(width: 10),
+                _buildChoiceButton("Belum"),
+              ],
             ),
             SizedBox(height: 20),
             ElevatedButton(

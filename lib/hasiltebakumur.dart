@@ -40,7 +40,7 @@ class _HasilTebakUmurPageState extends State<HasilTebakUmurPage> {
                 },
               ),
             ),
-            SizedBox(height: 20),
+            SizedBox(height: 10),
             ElevatedButton(
               onPressed: () {
                 _calculateFinalResult();
@@ -54,7 +54,7 @@ class _HasilTebakUmurPageState extends State<HasilTebakUmurPage> {
                           onPressed: () {
                             Navigator.of(context).pop();
                           },
-                          child: Text('Tutup'),
+                          child: Text('Close'),
                         ),
                       ],
                     );
