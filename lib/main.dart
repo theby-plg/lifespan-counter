@@ -10,8 +10,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Umur Calculator',
-      theme: ThemeData(primarySwatch: Colors.orange),
+      title: 'Lifespan Counter',
+      theme: ThemeData(primarySwatch: Colors.deepPurple),
       home: HomePage(),
       routes: {
         '/hitungUmur': (context) => HitungUmurPage(),
@@ -25,7 +25,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('App Ajaib')),
+      appBar: AppBar(title: const Text('Lifespan Counter')),
       body: Center(
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,

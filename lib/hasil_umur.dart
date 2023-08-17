@@ -49,7 +49,7 @@ class HasilUmurPage extends StatelessWidget {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.blue.shade100, Colors.blue.shade300],
+            colors: [Colors.blue.shade100, Colors.purple],
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
