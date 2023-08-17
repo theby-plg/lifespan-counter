@@ -21,12 +21,12 @@ class _HasilTebakUmurPageState extends State<HasilTebakUmurPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Hasil Tebak Umur')),
+      appBar: AppBar(title: Text('Umur Kamu')),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Masukkan 4 digit tahun kelahiran Anda:'),
+            Text('Masukkan tahun kelahiran kamu:'),
             SizedBox(height: 10),
             Container(
               width: 100,
@@ -48,7 +48,7 @@ class _HasilTebakUmurPageState extends State<HasilTebakUmurPage> {
                   context: context,
                   builder: (context) {
                     return AlertDialog(
-                      content: Text('Umur Anda Sekarang: $_hasilAkhir'),
+                      content: Text('Umur kamu Sekarang: $_hasilAkhir'),
                       actions: [
                         TextButton(
                           onPressed: () {
