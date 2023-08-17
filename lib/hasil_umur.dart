@@ -45,7 +45,7 @@ class HasilUmurPage extends StatelessWidget {
 
     return Scaffold(
       // ignore: prefer_const_constructors
-      appBar: AppBar(title: Text('Hasil Umur')),
+      appBar: AppBar(title: Text('Umur Kamu Sekarang')),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
@@ -60,7 +60,7 @@ class HasilUmurPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center, // Mengatur rata tengah
             children: [
               // ignore: prefer_const_constructors
-              Text('Umur Anda adalah:', style: TextStyle(fontSize: 20, color: Colors.white)),
+              Text('Umur Kamu adalah:', style: TextStyle(fontSize: 20, color: Colors.white)),
               // ignore: prefer_const_constructors
               SizedBox(height: 10),
               Text(
@@ -72,7 +72,7 @@ class HasilUmurPage extends StatelessWidget {
               // ignore: prefer_const_constructors
               SizedBox(height: 20),
               Text(
-                'Hari lahir Anda: ${DateFormat('EEEEEEE', 'id_ID').format(birthDate)}',
+                'Kamu Lahir Di Hari: ${DateFormat('EEEEEEE', 'id_ID').format(birthDate)}',
                 // ignore: prefer_const_constructors
                 style: TextStyle(fontSize: 20, color: Colors.white),
                 textAlign: TextAlign.center,
