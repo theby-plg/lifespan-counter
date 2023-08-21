@@ -11,8 +11,23 @@ class HasilUmurPage extends StatelessWidget {
 
   String _formatDuration(Duration duration) {
     int years = duration.inDays ~/ 365;
-    int months = (duration.inDays % 365) ~/ 30;
-    int days = duration.inDays % 30;
+    DateTime adjustedBirthDate = DateTime(birthDate.year + years, birthDate.month, birthDate.day);
+    int months = 0;
+
+    if (adjustedBirthDate.isBefore(DateTime.now())) {
+      while (adjustedBirthDate.add(Duration(days: 30)).isBefore(DateTime.now())) {
+        adjustedBirthDate = adjustedBirthDate.add(Duration(days: 30));
+        months++;
+      }
+    } else {
+      adjustedBirthDate = adjustedBirthDate.subtract(Duration(days: 30));
+      while (adjustedBirthDate.isAfter(DateTime.now())) {
+        adjustedBirthDate = adjustedBirthDate.subtract(Duration(days: 30));
+        months++;
+      }
+    }
+
+    int days = DateTime.now().difference(adjustedBirthDate).inDays;
     int hours = duration.inHours % 24;
     int minutes = duration.inMinutes % 60;
 
