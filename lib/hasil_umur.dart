@@ -12,22 +12,23 @@ class HasilUmurPage extends StatelessWidget {
   String _formatDuration(Duration duration) {
     int years = duration.inDays ~/ 365;
     DateTime adjustedBirthDate = DateTime(birthDate.year + years, birthDate.month, birthDate.day);
+
     int months = 0;
+    int days = 0;
 
     if (adjustedBirthDate.isBefore(DateTime.now())) {
-      while (adjustedBirthDate.add(Duration(days: 30)).isBefore(DateTime.now())) {
-        adjustedBirthDate = adjustedBirthDate.add(Duration(days: 30));
+      while (adjustedBirthDate.add(Duration(days: _daysInMonth(adjustedBirthDate.month, adjustedBirthDate.year))).isBefore(DateTime.now())) {
+        adjustedBirthDate = DateTime(adjustedBirthDate.year, adjustedBirthDate.month + 1, adjustedBirthDate.day);
         months++;
       }
     } else {
-      adjustedBirthDate = adjustedBirthDate.subtract(Duration(days: 30));
       while (adjustedBirthDate.isAfter(DateTime.now())) {
-        adjustedBirthDate = adjustedBirthDate.subtract(Duration(days: 30));
-        months++;
+        adjustedBirthDate = DateTime(adjustedBirthDate.year, adjustedBirthDate.month - 1, adjustedBirthDate.day);
+        months--;
       }
     }
 
-    int days = DateTime.now().difference(adjustedBirthDate).inDays;
+    days = DateTime.now().difference(adjustedBirthDate).inDays;
     int hours = duration.inHours % 24;
     int minutes = duration.inMinutes % 60;
 
@@ -36,11 +37,11 @@ class HasilUmurPage extends StatelessWidget {
     if (years > 0) {
       formattedDuration += '$years Tahun\n';
     }
-    if (months > 0) {
-      formattedDuration += '$months Bulan\n';
+    if (months.abs() > 0) {
+      formattedDuration += '${months.abs()} Bulan\n';
     }
-    if (days > 0) {
-      formattedDuration += '$days Hari\n';
+    if (days.abs() > 0) {
+      formattedDuration += '${days.abs()} Hari\n';
     }
     if (hours > 0) {
       formattedDuration += '$hours Jam\n';
@@ -50,6 +51,20 @@ class HasilUmurPage extends StatelessWidget {
     }
 
     return formattedDuration.trim();
+  }
+
+  int _daysInMonth(int month, int year) {
+    if (month == 2) {
+      return _isLeapYear(year) ? 29 : 28;
+    }
+    if ([4, 6, 9, 11].contains(month)) {
+      return 30;
+    }
+    return 31;
+  }
+
+  bool _isLeapYear(int year) {
+    return (year % 4 == 0 && year % 100 != 0) || (year % 400 == 0);
   }
 
   @override
